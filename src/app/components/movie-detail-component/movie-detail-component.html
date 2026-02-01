@@ -1,0 +1,73 @@
+@if (store.state()==='success' && !movie()) {
+<app-not-found-page></app-not-found-page>
+
+}
+@else if(store.state()==='success' && movie()) {
+<div class="movie_detail">
+
+    <img [src]="srv+movie()?.poster" alt="{{ movie()?.title }}" class="movie_poster"
+        [style.view-transition-name]="'poster-' + movie()?.imdbId">
+    <div class="details">
+        <div class="two-column">
+
+            <div class="movie_info">
+                <h2 class="movie_title">{{ movie()?.title }}</h2>
+                <p>
+                    <span class="movie_year">{{ movie()?.year}}</span>,
+                    <span class="movie_director">{{ movie()?.director }}</span>
+                </p>
+                <p> 
+                    <span class="movie_runtime">{{movie()?.runtime}}</span>&nbsp;
+                    <span class="movie_genre">{{ movie()?.genre }}</span>
+                </p>
+                <p class="movie_country">{{movie()?.country }}</p>
+                <p class="movie_awards">{{movie()?.awards }}</p>
+
+            </div>
+
+            <div>
+                @for(rate of movie()?.ratings; track $index){
+                <div class="rate">
+                    <div class="rate-title">{{rate.source}}</div>
+                    <div class="rate-value">
+                        <div class="scale">
+                            <div class="scale-value" [style.width]="getWidth(rate.value) + 'px'"
+                                [style.background-color]="getColor(getWidth(rate.value))"></div>
+                        </div>
+                        <div class="{{'rate'+$index}}">{{rate.value}}</div>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="movie_plot">{{ movie()?.plot }}</div>
+        <div>
+            Сценарий
+        </div>
+        <div class="fotos">
+            @for(item of movie()?.writer?.replace(" ","")?.split(','); track $index){
+            <div class="foto" id="writers">
+                <img src="/user-icon.png" class="icon" alt="{{item}}" />
+                <span class="name">{{item}}</span>
+            </div>
+
+            }
+        </div>
+        <div>
+            Актеры
+        </div>
+        <div class="fotos actors">
+            @for(item of movie()?.actors?.replace(" ","")?.split(','); track $index){
+            <div class="foto" id="actors">
+                <img src="/user-icon.png" class="icon" alt="{{item}}" />
+                <span class="name">{{item}}</span>
+            </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+}

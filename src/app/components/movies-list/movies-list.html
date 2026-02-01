@@ -1,0 +1,9 @@
+@if(store.state()==='loading') {
+    <app-loading-spinner></app-loading-spinner>
+}
+
+<div class="movie_list">
+    @for (item of items(); track $index) {
+    <app-movie-card [movie]="item"></app-movie-card>
+    }
+</div>

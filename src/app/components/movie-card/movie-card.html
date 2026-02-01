@@ -1,0 +1,8 @@
+<div class="card fade-in" appScrollAnimate animationClass="aos-animate" [routerLink]="'/movie/'+movie().imdbId">
+    <img [src]="srv+movie().poster" alt="{{ movie().title }} Poster" class="card_poster" [style.view-transition-name]="'poster-' + movie().imdbId" />
+    <div class="card-body">
+        <h5 class="card-title">{{ movie().title }}</h5>
+        <p class="card-year">{{ movie().year }}</p>
+    </div>    
+</div>
+

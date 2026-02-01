@@ -1,0 +1,9 @@
+@if(store.state()==='success' || store.state()==='loading'){
+    <app-header></app-header>
+
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+} @else if (store.state()=='error'){
+    <app-error-message></app-error-message>
+}

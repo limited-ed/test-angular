@@ -1,0 +1,30 @@
+@use "../../mixins"as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  /* This is the "sticking" point */
+  padding: 10px;
+  z-index: 1000;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid var(--accent-color);
+
+  @include mobile {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .header_title {
+    color: var(--primary-color);
+  }
+
+  .divider{
+    flex-grow: 1;
+  }
+
+ 
+}

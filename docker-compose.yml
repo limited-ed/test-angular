@@ -1,0 +1,28 @@
+services:
+  json-server:
+    container_name: 'json-server'
+    image: 'json-server'
+    build:
+      context: .
+      dockerfile: json-server/dockerfile
+    ports:
+     - "3000:3000"
+    networks:
+      - app-network 
+                       
+  angular-app:
+    container_name: 'angular-app'
+    image: 'angular-app'
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    ports:
+     - "4000:4000"
+    depends_on:
+     - 'json-server'
+    networks:
+      - app-network
+                
+networks:
+  app-network:
+    driver: bridge
